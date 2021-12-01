@@ -129,7 +129,7 @@ public class CardList {
 		return count;
 	}
 	
-	private CardNode search(Card key) {
+	public CardNode search(Card key) {
 		CardNode curNode = head;
 		
 		while(curNode != null) {
@@ -140,6 +140,8 @@ public class CardList {
 		}
 		return null;
 	}
+	//TODO Create sorting method
+	
 	//toString
 	@Override
 	public String toString() {
