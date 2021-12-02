@@ -28,7 +28,7 @@ public class Driver {
 		CardList allCards = new CardList();
 		readFile(cardFile,allCards);
 		Deck deck = new Deck(allCards);
-		deck.shuffleDeck();
+		deck.shuffle();
 		
 		/*System.out.println(deck.toString());
 		deck.printInDeck();
