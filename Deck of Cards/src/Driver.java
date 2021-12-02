@@ -6,30 +6,13 @@ import java.util.Scanner;
 public class Driver {
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		/*
-		Card c1 = new Card("Ace", "Spades", 1);
-		Card c2 = new Card("Two", "Clubs", 2);
-		Card c3 = new Card("Three", "Hearts", 3);
-		Card c4 = new Card("Four", "Diamonds", 4);
 		
-		
-		CardList cList = new CardList();
-		cList.append(c4);
-		cList.prepend(c1);
-		cList.insertAfter(c1,c3);
-		cList.insertAfter(c1,c2);
-		cList.delete(cList.get(0));
-		cList.delete(cList.get(0));
-		System.out.println(cList.toString());
-		//System.out.println(cList.get(0));
-		 * 
-		 */
 		File cardFile = new File("C:\\Users\\crdan\\git\\CardGames\\Deck of Cards\\Cards.txt.txt");
 		CardList allCards = new CardList();
 		readFile(cardFile,allCards);
 		Deck deck = new Deck(allCards);
-		deck.shuffle();
-		
+		//deck.shuffle();
+		runBlackJack(deck);
 		/*System.out.println(deck.toString());
 		deck.printInDeck();
 		Card hand = deck.grabCard();
@@ -60,36 +43,10 @@ public class Driver {
 		read.close();
 	}
 
-	public static void runBlackjack(Deck deck) {
+	public static void runBlackJack(Deck deck) {
 		Scanner scan = new Scanner(System.in);
-		int playerCount;
-		ArrayList<CardList> allHands = new ArrayList<>();
-		System.out.println("Shuffling Deck...");
-		deck.shuffle();
-		System.out.print("How many people are playing: ");
-		playerCount = scan.nextInt();
+	
 		
-		for(int i = 0; i < playerCount; i++) {
-			CardList startHand = new CardList();
-			startHand = new CardList();
-			//Everyone starts with two cards
-			startHand.append(deck.grabCard());
-			startHand.append(deck.grabCard());
-			allHands.add(startHand);
-		}
-		
-		boolean keepGoing = true;
-		
-		while(keepGoing) {
-			System.out.println("Hit or Pass(H/P)");
-			String input = scan.next();
-			if(input.toLowerCase().equals("p") || input.toLowerCase().equals("pass")) {
-				System.out.println("Continuing to next player");
-				break;
-			}
-			
-			
-		}
 		
 	}
 	
@@ -125,5 +82,11 @@ public class Driver {
 		return -1;
 	}
 	
-	
+	public static int handTotal(CardList hand) {
+		int total = 0;
+		for(int i = 0; i < hand.length(); i++) {
+			total = total + getValue(hand.get(i));
+		}
+		return total;
+	}
 }
