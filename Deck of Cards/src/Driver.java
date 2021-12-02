@@ -33,7 +33,10 @@ public class Driver {
 		deck.printInDeck();
 		Card hand = deck.grabCard();
 		deck.printInDeck();
-		System.out.println("\n" + hand.toString());
+		System.out.println("\n" + hand.toString() + "\n");
+		deck.getDeck().sort();
+		System.out.println("SORTING DECK \n ----------------------------");
+		deck.printInDeck();
 	}
 	
 	public static void readFile(File f, CardList cList) throws FileNotFoundException {

@@ -141,6 +141,69 @@ public class CardList {
 		return null;
 	}
 	//TODO Create sorting method
+	public void sort() {
+		head = mergeSort(head);
+		
+	}
+	
+	private CardNode mergeSort(CardNode start) {
+		//We'll use a Merge sort here
+		if(start == null || start.next == null) {
+			return start;
+		}
+		
+		CardNode[] arr = split(start);
+		CardNode firstHalf = arr[0];
+		CardNode secondHalf = arr[1];
+		
+		firstHalf = mergeSort(firstHalf);
+		secondHalf = mergeSort(secondHalf);
+		
+		return merge(firstHalf, secondHalf);
+		
+	}
+	private CardNode merge(CardNode list1, CardNode list2) {
+		//Base Case
+		if(list1 == null) {
+			return list2;
+		}
+		else if(list2 == null) {
+			return list1;
+		}
+		
+		CardNode result;
+		if(list1.data.compareTo(list2.data) <= 0) {
+			result = list1;
+			result.next = merge(list1.next,list2);
+		}
+		else {
+			result = list2;
+			result.next = merge(list1,list2.next);
+		}
+		return result;
+	}
+	private CardNode[] split(CardNode pointer) {
+		//Base Case
+		if(pointer == null || pointer.next == null) {
+			return new CardNode[] {pointer, null};
+		}
+		
+		CardNode backward = pointer;
+		CardNode forward = pointer.next;
+		
+		while(forward != null) {
+			forward = forward.next;
+			if(forward != null) {
+				backward = backward.next;
+				forward = forward.next;
+			}
+			
+		}
+		
+		CardNode[] arr = new CardNode[] {pointer, backward.next};
+		backward.next = null;
+		return arr;
+	}
 	
 	//toString
 	@Override
