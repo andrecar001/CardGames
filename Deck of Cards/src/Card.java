@@ -37,5 +37,9 @@ public class Card {
 		}
 	}
 	
+	public int compareTo(Card c) {
+		return this.cardID - c.getID();
+	}
+	
 
 }
