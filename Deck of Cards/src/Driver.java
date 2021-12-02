@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
@@ -29,7 +30,7 @@ public class Driver {
 		Deck deck = new Deck(allCards);
 		deck.shuffleDeck();
 		
-		//System.out.println(deck.toString());
+		/*System.out.println(deck.toString());
 		deck.printInDeck();
 		Card hand = deck.grabCard();
 		deck.printInDeck();
@@ -37,6 +38,7 @@ public class Driver {
 		deck.getDeck().sort();
 		System.out.println("SORTING DECK \n ----------------------------");
 		deck.printInDeck();
+		*/
 	}
 	
 	public static void readFile(File f, CardList cList) throws FileNotFoundException {
@@ -58,4 +60,70 @@ public class Driver {
 		read.close();
 	}
 
+	public static void runBlackjack(Deck deck) {
+		Scanner scan = new Scanner(System.in);
+		int playerCount;
+		ArrayList<CardList> allHands = new ArrayList<>();
+		System.out.println("Shuffling Deck...");
+		deck.shuffle();
+		System.out.print("How many people are playing: ");
+		playerCount = scan.nextInt();
+		
+		for(int i = 0; i < playerCount; i++) {
+			CardList startHand = new CardList();
+			startHand = new CardList();
+			//Everyone starts with two cards
+			startHand.append(deck.grabCard());
+			startHand.append(deck.grabCard());
+			allHands.add(startHand);
+		}
+		
+		boolean keepGoing = true;
+		
+		while(keepGoing) {
+			System.out.println("Hit or Pass(H/P)");
+			String input = scan.next();
+			if(input.toLowerCase().equals("p") || input.toLowerCase().equals("pass")) {
+				System.out.println("Continuing to next player");
+				break;
+			}
+			
+			
+		}
+		
+	}
+	
+	public static int getValue(Card c) {
+		switch(c.getRank()) {
+			case "ACE":
+				return 1;
+			case "TWO":
+				return 2;
+			case "THREE":
+				return 3;
+			case "FOUR":
+				return 4;
+			case "FIVE":
+				return 5;
+			case "SIX":
+				return 6;
+			case "SEVEN":
+				return 7;
+			case "EIGHT":
+				return 8;
+			case "NINE":
+				return 9;
+			case "TEN":
+				return 10;
+			case "JACK":
+				return 10;
+			case "QUEEN":
+				return 10;
+			case "KING":
+				return 10;
+		}
+		return -1;
+	}
+	
+	
 }

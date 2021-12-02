@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Deck {
 	private final int MAX_CARDS;
@@ -59,7 +58,7 @@ public class Deck {
 	}
 
 	//Shuffle Deck
-	public void shuffleDeck() {
+	public void shuffle() {
 		CardList newDeck = new CardList();
 		int size = inDeck.length();
 		while(newDeck.length() < size) {
