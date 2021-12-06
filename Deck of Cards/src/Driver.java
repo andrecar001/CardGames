@@ -44,17 +44,17 @@ public class Driver {
 	public static void readFile(File f, CardList cList) throws FileNotFoundException {
 		Scanner read = new Scanner(f);
 		String currLine, currSuit, currRank;
-		int currID;
+		int currID, currVal;
 		Card currCard;
 		while(read.hasNextLine()) {
 			currLine = read.nextLine();
 			
-			currRank = currLine.split("%")[1];
-			
 			currSuit = currLine.split("%")[0];
-			
-			currID = Integer.parseInt(currLine.split("%")[2]);
-			currCard = new Card(currSuit, currRank, currID);
+			currRank = currLine.split("%")[1];
+			currVal = Integer.parseInt(currLine.split("%")[2]);
+			currID = Integer.parseInt(currLine.split("%")[3]);
+		
+			currCard = new Card(currSuit, currRank, currVal, currID);
 			cList.append(currCard);
 		}
 		read.close();

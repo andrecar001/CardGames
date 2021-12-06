@@ -4,10 +4,12 @@ public class Card {
 	private String rank;
 	private String suit;
 	private int cardID;
+	private int value;
 	
-	public Card(String rank, String suit, int cardID) {
+	public Card(String rank, String suit,int value, int cardID) {
 		this.rank = rank;
 		this.suit = suit;
+		this.value = value;
 		this.cardID = cardID;
 	}
 	
@@ -17,6 +19,9 @@ public class Card {
 	
 	public String getSuit() {
 		return this.suit;
+	}
+	public int getValue() {
+		return value;
 	}
 
 	public int getID() {
