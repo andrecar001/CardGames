@@ -44,18 +44,16 @@ public class Driver {
 	public static void readFile(File f, CardList cList) throws FileNotFoundException {
 		Scanner read = new Scanner(f);
 		String currLine, currSuit, currRank;
-		int currID, currVal;
-		Card currCard;
+		int currValue, currID;
+		
 		while(read.hasNextLine()) {
 			currLine = read.nextLine();
-			
-			currSuit = currLine.split("%")[0];
 			currRank = currLine.split("%")[1];
-			currVal = Integer.parseInt(currLine.split("%")[2]);
+			currSuit = currLine.split("%")[0];
+			currValue = Integer.parseInt(currLine.split("%")[2]);
 			currID = Integer.parseInt(currLine.split("%")[3]);
-		
-			currCard = new Card(currSuit, currRank, currVal, currID);
-			cList.append(currCard);
+			
+			cList.append(new Card(currSuit, currRank, currValue, currID));
 		}
 		read.close();
 	}
@@ -63,19 +61,16 @@ public class Driver {
 	public static void runBlackjack(Deck deck) {
 		Scanner scan = new Scanner(System.in);
 		int playerCount;
-		ArrayList<CardList> allHands = new ArrayList<>();
+		ArrayList<Player> players = new ArrayList<>();
 		System.out.println("Shuffling Deck...");
 		deck.shuffle();
 		System.out.print("How many people are playing: ");
 		playerCount = scan.nextInt();
 		
 		for(int i = 0; i < playerCount; i++) {
-			CardList startHand = new CardList();
-			startHand = new CardList();
-			//Everyone starts with two cards
-			startHand.append(deck.grabCard());
-			startHand.append(deck.grabCard());
-			allHands.add(startHand);
+			Player currPlayer = new Player();
+			currPlayer.drawCard(2,deck);
+			players.add(currPlayer);
 		}
 		
 		boolean keepGoing = true;

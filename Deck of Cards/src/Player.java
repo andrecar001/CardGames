@@ -24,10 +24,16 @@ public class Player {
 	public CardList getHand() {
 		return hand;
 	}
+	public int getValue() {
+		return handValue;
+	}
 	//draw card
-	public void drawCard(Card c) {
-		hand.append(c);
-		handValue += c.getValue();
+	public void drawCard(int amount, Deck deck) {
+		for(int i = 0; i < amount; i++) {
+			Card tempCard = deck.draw();
+			hand.append(deck.draw());
+			handValue += tempCard.getValue();
+		}
 	}
 	
 	public Card playCard(Card c) {

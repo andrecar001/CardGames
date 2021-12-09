@@ -25,7 +25,7 @@ public class Deck {
 		return outOfDeck;
 	}
 	//Grab a card from the top of the deck
-	public Card grabCard() {
+	public Card draw() {
 		Card card = inDeck.get(0);
 		inDeck.delete(card);
 		outOfDeck.prepend(card);
